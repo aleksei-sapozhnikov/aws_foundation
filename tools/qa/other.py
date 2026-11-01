@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import importlib
 import json
 import re
 import subprocess
@@ -65,6 +66,7 @@ def issues(text: str) -> list[str]:
 def yaml_parser():
     """Install the pinned PyYAML dependency into ignored local tools if needed."""
     target = RUNTIME / "python"
+    target.mkdir(parents=True, exist_ok=True)
     sys.path.insert(0, str(target))
     try:
         import yaml
@@ -84,6 +86,8 @@ def yaml_parser():
     )
     if result.returncode != 0:
         raise RuntimeError("Unable to install pinned PyYAML")
+    # Clear cached module lookup results after installing into a local directory.
+    importlib.invalidate_caches()
     # Reload after installation (or upgrading an older local version).
     for name in list(sys.modules):
         if name == "yaml" or name.startswith("yaml."):
