@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import argparse
-import importlib
 import json
 import re
 import subprocess
@@ -85,8 +84,6 @@ def yaml_parser():
     )
     if result.returncode != 0:
         raise RuntimeError("Unable to install pinned PyYAML")
-    # Clear cached misses for the target directory before importing the new package.
-    importlib.invalidate_caches()
     # Reload after installation (or upgrading an older local version).
     for name in list(sys.modules):
         if name == "yaml" or name.startswith("yaml."):
