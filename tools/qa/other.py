@@ -75,7 +75,6 @@ def yaml_parser():
     except ImportError:
         pass
 
-    target.mkdir(parents=True, exist_ok=True)
     result = subprocess.run(
         [
             sys.executable, "-m", "pip", "install",
