@@ -15,13 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7.1.0
         with:
           python-version: "3.12"
       - name: Cache local QA tools
-        uses: actions/cache@v4
+        uses: actions/cache@v6.1.0
         with:
           path: .local/qa-runtime
           key: ${{ runner.os }}-${{ runner.arch }}-qa-python312-${{ hashFiles('tools/qa/**', '.tflint.hcl', '**/.terraform.lock.hcl') }}
