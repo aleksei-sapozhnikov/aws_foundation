@@ -1,11 +1,4 @@
 # =========================
-# OS / System files
-# =========================
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# =========================
 # IDE / Editor
 # =========================
 
@@ -22,73 +15,7 @@ out/
 .classpath
 .settings/
 
-# =========================
-# Java / Maven
-# =========================
-
-# Build output
-target/
-
-# Compiled classes
-*.class
-
-# Packaged artifacts
-*.jar
-*.war
-*.ear
-*.nar
-
-# Logs
-*.log
-
-# JVM crash logs
-hs_err_pid*
-replay_pid*
-
-# =========================
-# Python
-# =========================
-
-# Virtual environments
-.venv/
-venv/
-env/
-
-# Bytecode
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# Tool caches
-.pytest_cache/
-.mypy_cache/
-.coverage
-.coverage.*
-htmlcov/
-
-# =========================
-# Node / Frontend
-# =========================
-
-# Dependencies
-node_modules/
-
-# Package manager logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# Build output
-dist/
-build/
-.vite/
-
-# =========================
-# OpenTofu / Terraform
-# =========================
-
+# Local OpenTofu data and generated files.
 .terraform/
 .tofu/
 *.tfstate
@@ -97,38 +24,23 @@ build/
 *.plan
 crash.log
 crash.*.log
-*.auto.tfvars
-*.auto.tfvars.json
-*.tfvars
-*.tfvars.json
-!*.tfvars.example
-!*.tfvars.example.json
 override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
 
-# =========================
-# Temporary / Local Dev
-# =========================
+# Local variables and backend configuration values.
+*.tfvars
+*.tfvars.json
+!*.tfvars.example
+!*.tfvars.example.json
+*.tfbackend
+*.tfbackend.*
 
+# Local tools, credentials, and editor files.
 .local/
-tmp/
-*.tmp
-
-# =========================
-# Archives (optional)
-# =========================
-*.zip
-*.tar
-*.tar.gz
-*.rar
-
-# Graphify generated knowledge graph
-graphify-out/
-
-# =========================
-# Misc
-# =========================
-*.ctxt
-.mtj.tmp/
+.env
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini
