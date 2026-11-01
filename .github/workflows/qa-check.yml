@@ -1,0 +1,32 @@
+name: QA check
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize, ready_for_review]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qa-check:
+    name: QA check
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Cache local QA tools
+        uses: actions/cache@v4
+        with:
+          path: .local/qa-runtime
+          key: ${{ runner.os }}-${{ runner.arch }}-qa-python312-${{ hashFiles('tools/qa/**', '.tflint.hcl', '**/.terraform.lock.hcl') }}
+      - name: Check infrastructure and repository files
+        run: make qa-check
+      - name: Ensure no tracked files were modified
+        if: always()
+        run: git diff --exit-code
